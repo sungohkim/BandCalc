@@ -1,0 +1,72 @@
+<!DOCTYPE html> 
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="format-detection" content="telephone=no" />
+        <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->       
+        <meta name="viewport" content="width=device-width, initial-scale=1"> 
+        <title>BandCalc</title>
+
+        <link rel="stylesheet" type="text/css" href="css/jquery.mobile-1.4.1.min.css" />
+        <link rel="stylesheet" type="text/css" href="css/jquery-ui-1.10.4.custom.min.css" />
+        <link rel="stylesheet" type="text/css" href="css/main.css" rel="stylesheet" />
+        <script type="text/javascript" src="js/jquery-1.11.0.min.js" ></script>
+        <script type="text/javascript" src="js/jquery.mobile-1.4.1.min.js"></script>
+        <script type="text/javascript" src="js/jquery-ui-1.10.4.custom.min.js"></script> 
+        <script type="text/javascript" src="phonegap.js"></script>
+        <script type="text/javascript" src="js/index.js"></script>
+        <script type="text/javascript">
+            $(window).ready(function() {
+                app.initialize();
+            });
+        </script>        
+    </head> 
+    <body> 
+
+        <div data-role="page" id="home" align="center">
+            <div data-role="header" data-position="fixed" data-theme="b">
+                <h1>BandCalc</h1>
+                <a href="#" class="ui-btn-right" onClick="onExitSelect()">&nbsp;종료&nbsp;</a>
+                <div data-role="navbar">
+                    <ul>
+                        <li><a href="#">HOME</a></li>
+                        <li><a href="#" rel="external">&nbsp;</a></li>
+                        <li><a href="#" rel="external">&nbsp;</a></li>
+                    </ul>
+                </div><!-- /navbar -->
+            </div>
+            
+            <div data-role="content">
+                <div data-role="content">
+                    <ul data-role="listview" data-inset="true" id="if-list">
+                        <li><a href="#" data-transition="slide" rel="external">HS-LVDS</a></li>
+                        <li><a href="vby1.html" data-transition="slide" rel="external">VbyOne</a></li>
+                        <li><a href="#" data-transition="slide" rel="external">DP</a></li>
+                    </ul>
+
+                    <div data-role="collapsible">
+                        <h4>SETTINGS</h4>
+                        <fieldset data-role="controlgroup">
+                            <legend>앱실행 첫화면</legend>
+                                <input type="radio" name="radio-choice-1" id="radio-choice-1" value="1" checked="checked">
+                                <label for="radio-choice-1">HOME</label>
+                                <input type="radio" name="radio-choice-1" id="radio-choice-2" value="2">
+                                <label for="radio-choice-2">HS-LVDS</label>
+                                <input type="radio" name="radio-choice-1" id="radio-choice-3" value="3">
+                                <label for="radio-choice-3">VbyOne</label>
+                                <input type="radio" name="radio-choice-1" id="radio-choice-4" value="4">
+                                <label for="radio-choice-4">DP</label>
+                        </fieldset>
+                    </div>
+                </div>
+                <script type="text/javascript">
+                    app.funcRefreshRadio();
+                </script>                   
+            </div>
+            <div data-role="footer" data-position="fixed" data-id="oneFooter" data-theme="b">
+                <span class="footerText">ADT&trade;</span>
+            </div>
+        </div>
+
+    </body>
+</html>

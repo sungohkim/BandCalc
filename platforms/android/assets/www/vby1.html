@@ -1,0 +1,262 @@
+<!DOCTYPE html> 
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="format-detection" content="telephone=no" />
+        <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->       
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"> 
+        <title>BandCalc</title>
+
+        <!--<link rel="stylesheet" type="text/css" href="css/jquery.mobile-1.4.1.min.css" />-->
+        <!--<link rel="stylesheet" type="text/css" href="css/jquery-ui-1.10.4.custom.min.css" />-->
+        <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
+        <link rel="stylesheet" type="text/css" href="css/main.css" rel="stylesheet" />
+        <script type="text/javascript" src="js/jquery-1.11.0.min.js" ></script>
+        <!--<script type="text/javascript" src="js/jquery.mobile-1.4.1.min.js"></script>-->
+        <script type="text/javascript" src="js/jquery-ui-1.10.4.custom.min.js"></script>
+        <script type="text/javascript" src="js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="phonegap.js"></script>
+        <script type="text/javascript" src="js/prototype.js"></script>
+        <script type="text/javascript" src="js/vby1.js"></script>
+        <script type="text/javascript">
+            var nua = navigator.userAgent
+            var isAndroid = (nua.indexOf('Mozilla/5.0') > -1 && nua.indexOf('Android ') > -1 && nua.indexOf('AppleWebKit') > -1 && nua.indexOf('Chrome') === -1)
+            if (isAndroid) {
+              $('select.form-control').removeClass('form-control').css('width', '100%')
+        }
+        </script>        
+        <script type="text/javascript">
+            $(window).ready(function() {
+                appB.initialize();
+            });            
+        </script>        
+    </head> 
+    <body> 
+
+<!--
+                        <a href="#" class="ui-btn-right" onClick="onExitSelect()">&nbsp;종료&nbsp;</a>
+                        <li><a href="index.html" rel="external" data-transition="slide" data-direction="reverse">HOME</a></li>
+                        <li><a href="#" rel="external">&nbsp;</a></li>
+                        <li><a href="#" rel="external">&nbsp;</a></li>
+-->
+
+        <div class="navbar navbar-inverse navbar-static-top" role="navigation">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-1">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="index.html">VbyOne</a>
+                </div>
+
+                <div class="collapse navbar-collapse" id="navbar-collapse-1">
+                    <ul class="nav navbar-nav">
+                        <li><a href="#">HS-LVDS</a></li>
+                        <li class="active"><a href="vby1.html">VbyOne</a></li>
+                        <li><a href="#.html">DP</a></li>
+                        <li><a href="#" onClick="onExitSelect()">Exit</a>
+<!--                            
+                        <li><span class="footerText">ADT&trade;</span></li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">Action</a></li>
+                                <li><a href="#">Another action</a></li>
+                                <li><a href="#">Something else here</a></li>
+                                <li class="divider"></li>
+                                <li><a href="#">Separated link</a></li>
+                                <li class="divider"></li>
+                                <li><a href="#">One more separated link</a></li>
+                            </ul>
+                        </li>
+                        <li><span class="footerText">ADT&trade;</span></li>
+-->
+                    </ul>
+                </div>             
+            </div>
+        </div>
+
+        <div id="ajax_indicator" class="container" style="display: none" align="center">
+            <p style="text-align: center; padding: 0 0 0 0; left: 45%; top: 70px; position: absolute;">
+                <img src="css/images/ajax-loader.gif" />
+            </p>
+        </div>
+
+        <div id="page_view1" class="container">
+            <div class="row">
+                <div class="col-xs-12">&nbsp;</div>
+            </div>
+
+            <div class="row">
+                <div class="col-xs-1"><span class="glyphicon glyphicon-chevron-right"></span></div>
+                <div class="col-xs-11">
+                    <div class="input-group">
+                        <div class="input-group-btn">
+                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">H total
+                                <span class="caret"></span></button>
+                            <ul class="dropdown-menu dropdown-menu-left" role="menu"></ul>
+                        </div>
+                        <input type="text" class="form-control" placeholder="수평해상도를 입력하세요">
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-xs-12">&nbsp;</div>
+            </div>
+        </div>
+
+
+        <div id="page_view2" class="container">
+            <div class="row">
+                <div class="col-xs-1"><span class="glyphicon glyphicon-chevron-right"></span></div>
+                <div class="col-xs-11">
+                    <div class="input-group">
+                        <div class="input-group-btn">
+                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">V total
+                                <span class="caret"></span></button>
+                            <ul class="dropdown-menu dropdown-menu-left" role="menu"></ul>
+                        </div>
+                        <input type="text" class="form-control" placeholder="수직해상도를 입력하세요">
+                    </div>
+                </div>
+            </div>    
+
+            <div class="row">
+                <div class="col-xs-12">&nbsp;</div>
+            </div>
+        </div>
+
+
+        <div id="page_view3" class="container">
+            <div class="row">
+                <div class="col-xs-1"><span class="glyphicon glyphicon-chevron-right"></span></div>
+                <div class="col-xs-11">
+                    <div class="input-group">
+                        <div class="input-group-btn">
+                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">V sync
+                                <span class="caret"></span></button>
+                            <ul class="dropdown-menu dropdown-menu-left" role="menu"></ul>
+                        </div>
+                        <div class="btn-group" data-toggle="buttons">
+                            <label class="btn btn-default"></label>
+                            <label class="btn btn-default"></label>
+                            <label class="btn btn-default"></label>
+                        </div>
+
+                    </div>
+                </div>
+            </div>    
+
+            <div class="row">
+                <div class="col-xs-12">&nbsp;</div>
+            </div>            
+        </div>
+
+
+        <div id="page_view4" class="container">
+            <div class="row">
+                <div class="col-xs-1"><span class="glyphicon glyphicon-chevron-right"></span></div>
+                <div class="col-xs-11">
+                    <div class="input-group">
+                        <div class="input-group-btn">
+                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Color&nbsp;&nbsp;
+                                <span class="caret"></span></button>
+                            <ul class="dropdown-menu dropdown-menu-left" role="menu"></ul>
+                        </div>
+                        <div class="btn-group" data-toggle="buttons">
+                            <label class="btn btn-default"></label>
+                            <label class="btn btn-default"></label>
+                            <label class="btn btn-default"></label>
+                        </div>
+                    </div>
+                </div>
+            </div>   
+
+            <div class="row">
+                <div class="col-xs-12">&nbsp;</div>
+            </div>             
+        </div>
+      
+
+        <div id="page_view5" class="container">
+            <div class="row">
+                <div class="col-xs-1"><span class="glyphicon glyphicon-chevron-right"></span></div>
+                <div class="col-xs-11">
+                    <div class="input-group">
+                        <div class="input-group-btn">
+                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Bmode
+                                <span class="caret"></span></button>
+                            <ul class="dropdown-menu dropdown-menu-left" role="menu"></ul>
+                        </div>
+                        <div class="btn-group" data-toggle="buttons">
+                            <label class="btn btn-default"></label>
+                            <label class="btn btn-default"></label>
+                            <label class="btn btn-default"></label>
+                        </div>
+                    </div>
+                </div>
+            </div>   
+
+            <div class="row">
+                <div class="col-xs-12">&nbsp;</div>
+            </div>             
+        </div>
+
+
+        <div id="page_view6" class="container">
+            <div class="row">
+                <div class="col-xs-12">&nbsp;</div>
+            </div>                
+            <div class="row">
+                <div class="col-xs-1">&nbsp;</div>
+                <div class="col-xs-10">
+                    <button type="button" class="btn btn-default btn-lg btn-block" onClick="appB.funcCalculateIt();">Calculate It!</button>
+                </div>
+                <div class="col-xs-1">&nbsp;</div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">&nbsp;</div>
+            </div>    
+            <div class="row">
+                <div class="col-xs-12">&nbsp;</div>
+            </div>                         
+        </div>        
+
+
+        <div id="page_view7" class="container">
+            <div class="row">
+                <div class="col-xs-12">
+
+                    <div class="panel-group" id="accordion">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+                                    Result
+                                    </a>
+                                </h4>
+                            </div>
+                            <div id="collapseOne" class="panel-collapse collapse in">
+                                <div class="panel-body">
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>   
+
+            <div class="row">
+                <div class="col-xs-12">&nbsp;</div>
+            </div>             
+
+        </div>
+        <!--$("input:radio[name=radio][value=" + '<c:out value="${ bean.radio }"/>' + "]").attr("checked","checked");-->
+
+    </body>
+</html>
